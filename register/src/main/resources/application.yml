@@ -1,0 +1,17 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: register
+eureka:
+  client:
+    service-url:  #  服务地址
+      defaultZone:  http://${spring.cloud.client.ipAddress}:${server.port}/eureka/
+    register-with-eureka: false   #  不注册
+    fetch-registry: false     # 不拉取
+  server:
+    enable-self-preservation: false  #  关闭自我保护
+  instance:
+    prefer-ip-address: true  # 以ip 地址注册
+    hostname: ${spring.cloud.client.ipAddress}
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
